@@ -1,0 +1,21 @@
+Qualcom Dakota HS/SS USB PHY
+
+Required properties:
+ - compatible: "qcom,usb-ss-ipq4019-phy",
+	       "qcom,usb-hs-ipq4019-phy"
+ - reg: offset and length of the registers
+ - #phy-cells: should be 0
+ - resets: the reset controllers as listed below
+ - reset-names: the names of the reset controllers
+	"por_rst" - the POR reset line for SS and HS phys
+	"srif_rst" - the SRIF reset line for HS phys
+Example:
+
+hsphy@a8000 {
+	compatible = "qcom,usb-hs-ipq4019-phy";
+	phy-cells = <0>;
+	reg = <0xa8000 0x40>;
+	resets = <&gcc USB2_HSPHY_POR_ARES>,
+		 <&gcc USB2_HSPHY_S_ARES>;
+	reset-names = "por_rst", "srif_rst";
+};
